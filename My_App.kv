@@ -1,0 +1,59 @@
+<Game_Screen>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "hg.jpg"
+    ball: pong_ball
+    player_one: player_left
+    player_two: player_right
+
+
+    canvas:
+        Rectangle:
+            pos: self.center_x-5, 0
+            size: 10, self.height
+            source: "board.png"
+
+    Label:
+        font_size: 70
+        center_x: root.width / 4
+        top: root.top - 50
+        text: str(root.player_one.score)
+
+    Label:
+        font_size: 70
+        center_x: root.width * 3 / 4
+        top: root.top - 50
+        text: str(root.player_two.score)
+
+    PongBall:
+        id: pong_ball
+        center: self.parent.center
+
+    Game_Paddles:
+        id: player_left
+        x: root.x
+        center_y: root.center_y
+
+    Game_Paddles:
+        id: player_right
+        x: root.width-self.width
+        center_y: root.center_y
+
+<Game_Paddles>:
+    size: 24, 180
+    canvas:
+        Rectangle:
+            pos:self.pos
+            size:self.size
+            source: "board.png"
+
+
+<PongBall>:
+    size: 50, 50
+    canvas:
+        Ellipse:
+            pos: self.pos
+            size: self.size
+            source:"board.png"
